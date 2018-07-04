@@ -12,7 +12,7 @@ DEP_ID=$(aws deploy create-deployment \
     --application-name CodeDeployApp \
     --s3-location bucket=akaushal-s3,key=deploy/latest.zip,bundleType=zip \
     --deployment-group-name StageGroup \
-    --deployment-config-name CodeDeployDefault.AllAtOnce \
+    --deployment-config-name CodeDeployDefault.OneAtATime \
     --description Test3)
 echo "DeploymentId = $DEP_ID"
 echo "Follow progress at"
