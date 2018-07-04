@@ -1,0 +1,17 @@
+version: 0.0
+os: linux
+files:
+  - source: /webroot
+    destination: /var/www/html/
+hooks:
+    BeforeInstall:
+        - location: infra/scripts/install_dependencies
+          timeout: 300
+          runas: root
+        - location: infra/scripts/start_server
+          timeout: 300
+          runas: root
+    ApplicationStop:
+        - location: infra/scripts/stop_server
+          timeout: 300
+          runas: root

@@ -1,0 +1,31 @@
+File1
+
+aws deploy create-deployment --application-name Deploy2 --s3-location bucket=akaushal-s3,key=deploy,bundleType=zip,eTag=4596ce0708dd26791ee8cdae665a14d8 --deployment-group-name Deploy2 --deployment-config-name CodeDeployDefault.AllAtOnce --description Test2
+aws deploy get-deployment --deployment-id d-ZNQ482KJS
+aws deploy push --application-name Deploy2 --s3-location s3://akaushal-s3/deploy --source code/
+
+aws deploy create-deployment --application-name Deploy2 --s3-location bucket=akaushal-s3,key=deploy,bundleType=zip,eTag=4a3b06080cb58d4dcdd0d37bdf2937a8 --deployment-group-name Deploy2 --deployment-config-name CodeDeployDefault.AllAtOnce --description Test2
+
+
+
+aws deploy create-deployment-config --deployment-config-name MyDeployConfig1 --minimum-healthy-hosts type=FLEET_PERCENT,value=0 type=HOST_COUNT,value=0
+
+
+aws deploy create-deployment --application-name Deploy2 --s3-location bucket=akaushal-s3,key=deploy1,bundleType=zip,eTag=22d52224824ab9ffd8e25ec0d46f7b5f --deployment-group-name Deploy21 --deployment-config-name CodeDeployDefault.AllAtOnce --description Test3
+
+aws deploy create-deployment --application-name Delploy3 --s3-location bucket=akaushal-s3,key=deploy1,bundleType=zip,eTag=22d52224824ab9ffd8e25ec0d46f7b5f --deployment-group-name Delploy3 --deployment-config-name CodeDeployDefault.AllAtOnce --description Delploy3
+
+aws deploy create-deployment --application-name Delploy3 --s3-location bucket=akaushal-s3,key=deploy1,bundleType=zip,eTag=22d52224824ab9ffd8e25ec0d46f7b5f --deployment-group-name Deploy3 --deployment-config-name CodeDeployDefault.AllAtOnce --description Deploy3
+
+
+#!/bin/bash
+REGION=$(curl 169.254.169.254/latest/meta-data/placement/availability-zone/ | sed 's/[a-z]$//')
+
+yum update -y
+yum install ruby wget -y
+Yum install httpd
+
+cd /home/ec2-user
+wget https://aws-codedeploy-$REGION.s3.amazonaws.com/latest/install
+chmod +x ./install
+./install auto
