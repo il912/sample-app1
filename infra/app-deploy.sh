@@ -4,18 +4,25 @@
 set -e
 
 # change to project root
+
+echo "Working Directory: `pwd`"
+
+gitusername=il912
+export commitId=`git rev-parse HEAD`
+export reponame=`basename -s .git \`git config --get remote.origin.url\``
+export repopath=`pwd`
+export repodir=`basename \`pwd\``
+
 cd "../"
 
-echo "Directory Changed to `pwd`"
-
 echo "build.sh starts here"
-infra/build.sh
+$repopath/infra/build.sh
 echo "build.sh ends here"
 
 echo "upload.sh starts here"
-infra/upload.sh
+$repopath/infra/upload.sh
 echo "upload.sh ends here"
 
 echo "deploy.sh starts here"
-infra/deploy.sh
+$repopath/infra/deploy.sh
 echo "deploy.sh ends here"

@@ -23,9 +23,23 @@ REGION=$(curl 169.254.169.254/latest/meta-data/placement/availability-zone/ | se
 
 yum update -y
 yum install ruby wget -y
-Yum install httpd
+yum install httpd
 
 cd /home/ec2-user
 wget https://aws-codedeploy-$REGION.s3.amazonaws.com/latest/install
 chmod +x ./install
 ./install auto
+
+--github-location repository=string,commitId=string
+--s3-location bucket=string,key=string,bundleType=tar|tgz|zip,version=string,eTag=string
+
+aws deploy create-deployment --application-name CodeDeployApp --github-location repository=il912/sample-app1,commitId=1646dfc8d36ac668c6a527b91e9db017c69ca70e --deployment-group-name StageGroup --deployment-config-name CodeDeployDefault.AllAtOnce --description Test3
+aws deploy create-deployment --application-name CodeDeployApp --s3-location bucket=akaushal-s3,key=deploy1,bundleType=zip,eTag=22d52224824ab9ffd8e25ec0d46f7b5f --deployment-group-name StageGroup --deployment-config-name CodeDeployDefault.AllAtOnce --description Test3
+
+
+aws deploy get-deployment --deployment-id d-8IYM5UYNS --region us-east-2
+
+aws deploy get-deployment --deployment-id $DEP_ID --region $AWS_REGION --profile $AWS_PROFILE
+d-VWCKWJZNS
+
+https://us-east-2.console.aws.amazon.com/codedeploy/home?region=us-east-2#/deployments/d-VWCKWJZNS

@@ -3,14 +3,15 @@
 
 echo "starting build..."
 
-# Clean
-rm -rf builds/current
-
 BUILDSTAMP=$(date +%Y%m%d-%H%M%S)
-tar -czf builds/archive/build-$BUILDSTAMP.tgz webroot/
+
+cd $repodir
+zip -r ../builds/archive/build-$BUILDSTAMP.zip . * -x ".git*" -x ".DS_Store"
+cd ../
+
 echo "Tarball created"
 
 # its very easy to point when we have static name of the file (latest)
-cp builds/archive/build-$BUILDSTAMP.tgz builds/latest.tgz
+cp builds/archive/build-$BUILDSTAMP.zip builds/latest.zip
 
-echo "Build created: builds/archive/build-$BUILDSTAMP.tgz and builds/latest.tgz"
+echo "Build created: builds/archive/build-$BUILDSTAMP.zip and builds/latest.zip"
