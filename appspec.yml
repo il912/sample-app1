@@ -5,13 +5,13 @@ files:
     destination: /var/www/html/
 hooks:
     BeforeInstall:
-        - location: infra/scripts/install_dependencies
+        - location: infra/install_dependencies
           timeout: 300
           runas: root
-        - location: infra/scripts/start_server
+        - location: infra/start_server
           timeout: 300
           runas: root
     ApplicationStop:
-        - location: infra/scripts/stop_server
+        - location: infra/stop_server
           timeout: 300
           runas: root
