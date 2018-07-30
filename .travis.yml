@@ -1,0 +1,6 @@
+language: php
+
+php:
+  - "stable"
+
+script: gulp travis
